@@ -84,7 +84,8 @@ dependencies {
 	implementation files('lib/xen-api-26.1.8.jar')
 	// Required transitive dependencies for xen-api-26.1.8 (switched from XML-RPC to Jackson+httpclient5)
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.3'
-	implementation 'org.apache.httpcomponents.client5:httpclient5:5.3'
+	// MORPH-19065: httpclient5 5.6.3 pulls httpcore5/httpcore5-h2 5.4.3 (fixes CVE-2026-54399, CVE-2026-54428, CVE-2026-64607)
+	implementation 'org.apache.httpcomponents.client5:httpclient5:5.6.3'
 
 }
 
