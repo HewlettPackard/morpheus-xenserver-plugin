@@ -80,7 +80,7 @@ dependencies {
 		exclude module: 'groovy-all'
 	}
 
-	implementation 'org.apache.commons:commons-compress:1.21'
+	implementation 'org.apache.commons:commons-compress:1.26.0'
 	implementation files('lib/xen-api-26.1.8.jar')
 	// Required transitive dependencies for xen-api-26.1.8 (switched from XML-RPC to Jackson+httpclient5)
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.11'
