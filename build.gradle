@@ -48,10 +48,10 @@ dependencies {
 	provided "com.morpheusdata:morpheus-plugin-api:$morpheusApiVersion"
 	
 	provided "org.codehaus.groovy:groovy-all:$groovyVersion"
-	implementation 'commons-beanutils:commons-beanutils:1.9.3'
+	implementation 'commons-beanutils:commons-beanutils:1.11.0'
 	implementation "org.slf4j:slf4j-api:$slf4jVersion"
 	implementation "org.slf4j:slf4j-parent:$slf4jVersion"
-	implementation 'commons-net:commons-net:3.6'
+	implementation 'commons-net:commons-net:3.9.0'
 
 	// Include morpheus-core and it's dependencies
 	testImplementation 'io.reactivex.rxjava3:rxjava:3.1.7'
@@ -80,11 +80,18 @@ dependencies {
 		exclude module: 'groovy-all'
 	}
 
-	implementation 'org.apache.commons:commons-compress:1.21'
+	implementation 'org.apache.commons:commons-compress:1.26.0'
+	constraints {
+		implementation('org.apache.commons:commons-lang3:3.18.0') {
+			because('commons-compress 1.26.0 pulls commons-lang3 3.14.0 which is vulnerable to uncontrolled recursion')
+		}
+	}
 	implementation files('lib/xen-api-26.1.8.jar')
 	// Required transitive dependencies for xen-api-26.1.8 (switched from XML-RPC to Jackson+httpclient5)
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.3'
-	implementation 'org.apache.httpcomponents.client5:httpclient5:5.3'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.11'
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.18.11'
+	// httpclient5 5.6.3 pulls httpcore5/httpcore5-h2 5.4.3 (fixes CVE-2026-54399, CVE-2026-54428, CVE-2026-64607)
+	implementation 'org.apache.httpcomponents.client5:httpclient5:5.6.3'
 
 }
 
