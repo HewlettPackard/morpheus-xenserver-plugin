@@ -1,87 +1,4 @@
 /*
-   ---- Version 36 ----
-*/
-
-
-resource "compute-type-layout" "kubernetes-1_36-ubuntu-20-04-xen-amd64-single" {
-  code              = "kubernetes-1_36-ubuntu-20-04-xen-amd64-single"
-  enabled           = true
-  name              = "HKS Kubernetes 1.36 Cluster on Ubuntu 20.04"
-  sortOrder         = 0
-  computeVersion    = "20.04"
-  clusterVersion    = "1.36.x"
-  description       = "provision a kubernetes 1.36 cluster on ubuntu 20.04"
-  type              = "xenKubeMaster"
-  serverCount       = 4
-  memoryRequirement = 1073741824
-  hasAutoScale      = false
-  containerRuntime  = "containerd"
-  networkRuntime    = "calico"
-  computeServers = [
-    compute-type-set.kubernetes-ubuntu-20-04-xen-amd64-set,
-    compute-type-set.kubernetes-ubuntu-20-04-worker-xen-amd64-set
-  ]
-  groupType     = "kubernetes-cluster"
-  provisionType = "xen"
-  optionTypes = [
-    "kubernetes.master.podCidr",
-    "kubernetes.master.serviceCidr"
-  ]
-  specTemplates = []
-  packages = [
-    "kubernetes-calico-3-32-1-package",
-  ]
-  optionalPackages = [
-    "kubernetes-envoy-gateway-1-8-controller-package",
-    "kubernetes-rook-1-20-7-with-autoscaler-package",
-    "kubernetes-fluentbit-5-1-package",
-    "kubernetes-prometheus-0-18-package",
-    "kubernetes-gateway-api-1-6-1-package"
-  ]
-}
-
-
-resource "compute-type-layout" "kubernetes-1_36-ubuntu-20-04-xen-amd64" {
-  code              = "kubernetes-1_36-ubuntu-20-04-xen-amd64"
-  enabled           = true
-  name              = "HKS Kubernetes 1.36 HA Cluster on Ubuntu 20.04"
-  sortOrder         = 100
-  computeVersion    = "20.04"
-  clusterVersion    = "1.36.x"
-  description       = "provision a kubernetes HA 1.36 cluster on ubuntu 20.04"
-  type              = "xenKubeMaster"
-  serverCount       = 4
-  memoryRequirement = 1073741824
-  hasAutoScale      = false
-  containerRuntime  = "containerd"
-  networkRuntime    = "calico"
-  computeServers = [
-    compute-type-set.kubernetes-ha-master-ubuntu-20-04-xen-amd64-set,
-    compute-type-set.kubernetes-ha-add-master-ubuntu-20-04-xen-amd64-set,
-    compute-type-set.kubernetes-ha-final-master-ubuntu-20-04-xen-amd64-set,
-    compute-type-set.kubernetes-ubuntu-20-04-ha-worker-xen-amd64-set
-  ]
-  groupType     = "kubernetes-cluster"
-  provisionType = "xen"
-  optionTypes = [
-    "kubernetes.master.podCidr",
-    "kubernetes.master.serviceCidr"
-  ]
-  specTemplates = []
-  packages = [
-    "kubernetes-calico-3-32-1-package",
-  ]
-  optionalPackages = [
-    "kubernetes-envoy-gateway-1-8-controller-package",
-    "kubernetes-rook-1-20-7-with-autoscaler-package",
-    "kubernetes-fluentbit-5-1-package",
-    "kubernetes-prometheus-0-18-package",
-    "kubernetes-gateway-api-1-6-1-package"
-  ]
-}
-
-
-/*
    ---- Version 35 ----
 */
 
@@ -90,7 +7,7 @@ resource "compute-type-layout" "kubernetes-1_35-ubuntu-20-04-xen-amd64-single" {
   code              = "kubernetes-1_35-ubuntu-20-04-xen-amd64-single"
   enabled           = true
   name              = "HKS Kubernetes 1.35 Cluster on Ubuntu 20.04"
-  sortOrder         = 20
+  sortOrder         = 0
   computeVersion    = "20.04"
   clusterVersion    = "1.35.x"
   description       = "provision a kubernetes 1.35 cluster on ubuntu 20.04"
@@ -112,14 +29,14 @@ resource "compute-type-layout" "kubernetes-1_35-ubuntu-20-04-xen-amd64-single" {
   ]
   specTemplates = []
   packages = [
-    "kubernetes-calico-3-32-1-package",
+    "kubernetes-calico-3-25-0-package",
+    "kubernetes-rook-1-15-0-package",
+    "kubernetes-fluentbit-3-0-7-package",
+    "kubernetes-prometheus-0-12-package",
+    "kubernetes-gateway-api-1-5-1-package"
   ]
   optionalPackages = [
-    "kubernetes-envoy-gateway-1-8-controller-package",
-    "kubernetes-rook-1-20-7-with-autoscaler-package",
-    "kubernetes-fluentbit-5-1-package",
-    "kubernetes-prometheus-0-18-package",
-    "kubernetes-gateway-api-1-6-1-package"
+    "kubernetes-envoy-gateway-1-8-controller-package"
   ]
 }
 
@@ -128,7 +45,7 @@ resource "compute-type-layout" "kubernetes-1_35-ubuntu-20-04-xen-amd64" {
   code              = "kubernetes-1_35-ubuntu-20-04-xen-amd64"
   enabled           = true
   name              = "HKS Kubernetes 1.35 HA Cluster on Ubuntu 20.04"
-  sortOrder         = 110
+  sortOrder         = 100
   computeVersion    = "20.04"
   clusterVersion    = "1.35.x"
   description       = "provision a kubernetes HA 1.35 cluster on ubuntu 20.04"
@@ -152,14 +69,14 @@ resource "compute-type-layout" "kubernetes-1_35-ubuntu-20-04-xen-amd64" {
   ]
   specTemplates = []
   packages = [
-    "kubernetes-calico-3-32-1-package",
+    "kubernetes-calico-3-25-0-package",
+    "kubernetes-rook-1-15-0-package",
+    "kubernetes-fluentbit-3-0-7-package",
+    "kubernetes-prometheus-0-12-package",
+    "kubernetes-gateway-api-1-5-1-package"
   ]
   optionalPackages = [
-    "kubernetes-envoy-gateway-1-8-controller-package",
-    "kubernetes-rook-1-20-7-with-autoscaler-package",
-    "kubernetes-fluentbit-5-1-package",
-    "kubernetes-prometheus-0-18-package",
-    "kubernetes-gateway-api-1-6-1-package"
+    "kubernetes-envoy-gateway-1-8-controller-package"
   ]
 }
 
@@ -195,14 +112,14 @@ resource "compute-type-layout" "kubernetes-1_34-ubuntu-20-04-xen-amd64-single" {
   ]
   specTemplates = []
   packages = [
-    "kubernetes-calico-3-32-1-package",
+    "kubernetes-calico-3-25-0-package",
+    "kubernetes-rook-1-15-0-package",
+    "kubernetes-fluentbit-3-0-7-package",
+    "kubernetes-prometheus-0-12-package",
+    "kubernetes-gateway-api-1-5-1-package"
   ]
   optionalPackages = [
-    "kubernetes-envoy-gateway-1-8-controller-package",
-    "kubernetes-rook-1-20-7-with-autoscaler-package",
-    "kubernetes-fluentbit-5-1-package",
-    "kubernetes-prometheus-0-18-package",
-    "kubernetes-gateway-api-1-6-1-package"
+    "kubernetes-envoy-gateway-1-8-controller-package"
   ]
 }
 
@@ -235,14 +152,14 @@ resource "compute-type-layout" "kubernetes-1_34-ubuntu-20-04-xen-amd64" {
   ]
   specTemplates = []
   packages = [
-    "kubernetes-calico-3-32-1-package",
+    "kubernetes-calico-3-25-0-package",
+    "kubernetes-rook-1-15-0-package",
+    "kubernetes-fluentbit-3-0-7-package",
+    "kubernetes-prometheus-0-12-package",
+    "kubernetes-gateway-api-1-5-1-package"
   ]
   optionalPackages = [
-    "kubernetes-envoy-gateway-1-8-controller-package",
-    "kubernetes-rook-1-20-7-with-autoscaler-package",
-    "kubernetes-fluentbit-5-1-package",
-    "kubernetes-prometheus-0-18-package",
-    "kubernetes-gateway-api-1-6-1-package"
+    "kubernetes-envoy-gateway-1-8-controller-package"
   ]
 }
 
@@ -254,7 +171,7 @@ resource "compute-type-layout" "kubernetes-1_34-ubuntu-20-04-xen-amd64" {
 
 resource "compute-type-layout" "kubernetes-1_33-ubuntu-20-04-xen-amd64-single" {
   code              = "kubernetes-1_33-ubuntu-20-04-xen-amd64-single"
-  enabled           = false
+  enabled           = true
   name              = "HKS Kubernetes 1.33 Cluster on Ubuntu 20.04"
   sortOrder         = 20
   computeVersion    = "20.04"
@@ -292,7 +209,7 @@ resource "compute-type-layout" "kubernetes-1_33-ubuntu-20-04-xen-amd64-single" {
 
 resource "compute-type-layout" "kubernetes-1_33-ubuntu-20-04-xen-amd64" {
   code              = "kubernetes-1_33-ubuntu-20-04-xen-amd64"
-  enabled           = false
+  enabled           = true
   name              = "HKS Kubernetes 1.33 HA Cluster on Ubuntu 20.04"
   sortOrder         = 200
   computeVersion    = "20.04"
